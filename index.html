@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css">
+        *{ margin: 0; padding: 0;}
+        ul,li{ list-style: none;}
+        #content{ width: 500px; margin: 0 auto;}
+        #content h1{ text-align: center;}
+        #content ul li{
+            float: left; width: 200px; border: solid 1px  #000; margin-right: 10px;
+        }
+    </style>
+    <script src="jquery.js"></script>
+    <script src="template-native.js"></script>
+</head>
+<body>
+    <div id="content"></div>
+    <script id="test" type="text/html">
+        <h1><%=title %></h1>
+        <ul>
+            <%for (var i=0;i<list.length;i++){ %>
+                <li>
+                    <% for (var j = 0; j<list[i].lists.length; j++){ %>
+                        <div>索引 <%=j %> ：<%=list[i].lists[j].title %>喜欢<%=list[i].lists[j].con %></div>
+                    <%} %>
+                </li>
+            <%} %>
+        </ul>
+    </script>
+    <script>
+        var data = {
+            title: '基本例子',
+            list: [{
+                lists: [{title: '小明', con: '文艺'},{title: '小花', con: '博客'},{title: '小花', con: '博客'}]
+            },
+            {
+                lists: [{title: '小明', con: '文艺'},{title: '小花', con: '博客'},{title: '小花', con: '吉它'}]
+            }]
+        };
+        var html = template('test', data);
+        $('#content').html(html);
+    </script>
+</body>
+</html>
